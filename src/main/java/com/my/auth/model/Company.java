@@ -6,6 +6,19 @@ import java.util.Date;
 @Entity
 public class Company {
 
+    public Company() {}
+    public Company(String name
+                , String address
+                , Long createdBy
+                , Long updatedBy) {
+        this.name = name;
+        this.address = address;
+        this.createdBy = createdBy;
+        this.createdAt = new Date();
+        this.updatedBy = updatedBy;
+        this.updatedAt = new Date();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

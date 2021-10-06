@@ -6,6 +6,23 @@ import java.util.Date;
 @Entity
 public class Client {
 
+    public Client() {}
+    public Client(Long companyId
+                , String name
+                , String email
+                , String phone
+                , Long createdBy
+                , Long updatedBy) {
+        this.companyId = companyId;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.createdBy = createdBy;
+        this.createdAt = new Date();
+        this.updatedBy = updatedBy;
+        this.updatedAt = new Date();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

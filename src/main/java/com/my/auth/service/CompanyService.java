@@ -1,6 +1,7 @@
 package com.my.auth.service;
 
 import com.my.auth.dao.CompanyRepository;
+import com.my.auth.exception.ResourceNotFoundException;
 import com.my.auth.model.Company;
 import javassist.NotFoundException;
 import org.slf4j.Logger;
@@ -21,36 +22,46 @@ public class CompanyService {
         this.repo = repo;
     }
 
-    public Company create(Company company) throws Exception {
+    public Company create(Company company) throws ResourceNotFoundException {
         if (company.getId() != null)
             new Exception("company's id is wrong");
         return repo.save(company);
     }
 
-    public Company query(Long id) throws Exception {
+    public Company query(Long id) throws ResourceNotFoundException {
         Optional<Company> companyOpt = repo.findById(id);
-        Company company = companyOpt.orElseThrow(() -> new Exception("company not found"));
+        Company company = companyOpt.orElseThrow(() -> new ResourceNotFoundException("company not found"));
         return company;
     }
 
-    public Company update(Long id, Company company) throws Exception {
+    public Company update(Long id, Company company) throws ResourceNotFoundException {
         if (company.getId() == null)
-            new Exception("company's id is wrong");
+            new ResourceNotFoundException("company's id is wrong");
         if (id != company.getId())
-            new Exception("sent company's ids is not consistency");
+            new ResourceNotFoundException("sent company's ids is not consistency");
         if (!repo.findById(company.getId()).isPresent())
-            new Exception("company's id is not exist");
+            new ResourceNotFoundException("company's id is not exist");
         return repo.save(company);
     }
 
-    public void delete(Long id) throws NotFoundException {
+    public void delete(Long id) throws ResourceNotFoundException {
         Optional<Company> companyOpt = repo.findById(id);
         if (!companyOpt.isPresent())
-            new NotFoundException("company's id is not exist");
+            new ResourceNotFoundException("company's id is not exist");
         repo.deleteById(id);
     }
 
     public List<Company> findAll() {
         return repo.findAll();
+    }
+
+    public void saveAll(List<Company> companies) {
+        repo.saveAll(companies);
+    }
+
+    public Company findOneByName(String name) throws ResourceNotFoundException {
+        Optional<Company> companyOpt = repo.findOneByName(name);
+        Company company = companyOpt.orElseThrow(() -> new ResourceNotFoundException("company not found"));
+        return company;
     }
 }
