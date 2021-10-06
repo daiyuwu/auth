@@ -14,8 +14,6 @@ import java.util.Optional;
 @Service
 public class CompanyService {
 
-    Logger logger = LoggerFactory.getLogger(getClass());
-
     private CompanyRepository repo;
 
     @Autowired

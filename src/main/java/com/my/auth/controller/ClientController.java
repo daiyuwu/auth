@@ -2,7 +2,6 @@ package com.my.auth.controller;
 
 import com.my.auth.model.Client;
 import com.my.auth.service.ClientService;
-import com.my.auth.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
