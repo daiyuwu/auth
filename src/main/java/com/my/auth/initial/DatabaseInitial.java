@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -25,14 +26,17 @@ public class DatabaseInitial implements CommandLineRunner {
     private ClientService clientServ;
     private CompanyService companyServ;
     private UserService userServ;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public DatabaseInitial(ClientService clientServ
                             , CompanyService companyServ
-                            , UserService userServ) {
+                            , UserService userServ
+                            , PasswordEncoder passwordEncoder) {
         this.clientServ = clientServ;
         this.companyServ = companyServ;
         this.userServ = userServ;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -53,9 +57,9 @@ public class DatabaseInitial implements CommandLineRunner {
 
     private void initUser() {
         List<User> users = List.of(
-            new User("acc1", new BCryptPasswordEncoder().encode("pw1"), "name1", Role.SUPER)
-            , new User("acc2", new BCryptPasswordEncoder().encode("pw2"), "name2", Role.MANAGER)
-            , new User("acc3", new BCryptPasswordEncoder().encode("pw3"), "name3", Role.OPERATOR)
+            new User("acc1", passwordEncoder.encode("pw1"), "name1", Role.SUPER)
+            , new User("acc2", passwordEncoder.encode("pw2"), "name2", Role.MANAGER)
+            , new User("acc3", passwordEncoder.encode("pw3"), "name3", Role.OPERATOR)
         );
         userServ.saveAll(users);
     }

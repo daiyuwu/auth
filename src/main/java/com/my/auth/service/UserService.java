@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,16 +18,19 @@ import java.util.Optional;
 public class UserService {
 
     private UserRepository repo;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository repo) {
+    public UserService(UserRepository repo
+                    , PasswordEncoder passwordEncoder) {
         this.repo = repo;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public User create(User user) throws ResourceNotFoundException {
         if (user.getId() != null)
             throw new ResourceNotFoundException("user's id is wrong");
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return repo.save(user);
     }
 
