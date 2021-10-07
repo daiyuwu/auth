@@ -41,10 +41,6 @@ public class DatabaseInitial implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-
-        logger.warn("--- ROLE SUPPER: " + Role.SUPER.name());
-        logger.warn("--- ROLE MANAGER: " + Role.MANAGER.name());
-
         initUser();
         try {
             initCompany();

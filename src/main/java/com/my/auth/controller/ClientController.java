@@ -4,11 +4,12 @@ import com.my.auth.model.Client;
 import com.my.auth.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("clients")
+@RequestMapping(value = "clients", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ClientController {
 
     ClientService clientServ;
