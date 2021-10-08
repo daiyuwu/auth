@@ -1,11 +1,12 @@
 package com.my.auth.controller;
 
-import com.my.auth.model.Client;
-import com.my.auth.service.ClientService;
+import com.my.auth.model.database.Client;
+import com.my.auth.service.database.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -44,5 +45,14 @@ public class ClientController {
     @GetMapping
     public List<Client> all() {
         return clientServ.findAll();
+    }
+
+    @PostMapping("/batch")
+    public List<Client> batch(@RequestBody List<Client> clients) {
+        clients.stream().forEach(c -> {
+            c.setCreatedAt(new Date());
+            c.setUpdatedAt(new Date());
+        });
+        return clientServ.saveAll(clients);
     }
 }
