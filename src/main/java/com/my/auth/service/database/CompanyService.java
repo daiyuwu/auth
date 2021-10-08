@@ -1,11 +1,8 @@
-package com.my.auth.service;
+package com.my.auth.service.database;
 
 import com.my.auth.dao.CompanyRepository;
 import com.my.auth.exception.ResourceNotFoundException;
-import com.my.auth.model.Company;
-import javassist.NotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.my.auth.model.database.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

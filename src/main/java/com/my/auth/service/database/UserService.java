@@ -1,13 +1,10 @@
-package com.my.auth.service;
+package com.my.auth.service.database;
 
 import com.my.auth.constant.Role;
 import com.my.auth.dao.UserRepository;
 import com.my.auth.exception.ResourceNotFoundException;
-import com.my.auth.model.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.my.auth.model.database.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

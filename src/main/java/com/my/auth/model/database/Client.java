@@ -1,18 +1,22 @@
-package com.my.auth.model;
+package com.my.auth.model.database;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Company {
+public class Client {
 
-    public Company() {}
-    public Company(String name
-                , String address
+    public Client() {}
+    public Client(Long companyId
+                , String name
+                , String email
+                , String phone
                 , Long createdBy
                 , Long updatedBy) {
+        this.companyId = companyId;
         this.name = name;
-        this.address = address;
+        this.email = email;
+        this.phone = phone;
         this.createdBy = createdBy;
         this.createdAt = new Date();
         this.updatedBy = updatedBy;
@@ -23,9 +27,13 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
+    private Long companyId;
+    @Column
     private String name;
     @Column
-    private String address;
+    private String email;
+    @Column
+    private String phone;
     @Column
     private Long createdBy;
     @Column
@@ -45,6 +53,14 @@ public class Company {
         this.id = id;
     }
 
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
+
     public String getName() {
         return name;
     }
@@ -53,12 +69,20 @@ public class Company {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Long getCreatedBy() {

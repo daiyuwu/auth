@@ -1,7 +1,7 @@
 package com.my.auth.controller;
 
-import com.my.auth.model.Company;
-import com.my.auth.service.CompanyService;
+import com.my.auth.model.database.Company;
+import com.my.auth.service.database.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

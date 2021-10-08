@@ -1,14 +1,12 @@
 package com.my.auth.service;
 
 import com.my.auth.exception.ResourceNotFoundException;
-import com.my.auth.model.User;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import com.my.auth.model.database.User;
+import com.my.auth.service.database.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CustomSpringUserService implements UserDetailsService {

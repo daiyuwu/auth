@@ -1,10 +1,8 @@
-package com.my.auth.service;
+package com.my.auth.service.database;
 
 import com.my.auth.dao.ClientRepository;
 import com.my.auth.exception.ResourceNotFoundException;
-import com.my.auth.model.Client;
-import com.my.auth.model.Company;
-import javassist.NotFoundException;
+import com.my.auth.model.database.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,7 +52,7 @@ public class ClientService {
         return repo.findAll();
     }
 
-    public void saveAll(List<Client> clients) {
-        repo.saveAll(clients);
+    public List<Client> saveAll(List<Client> clients) {
+        return repo.saveAll(clients);
     }
 }

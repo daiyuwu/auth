@@ -1,4 +1,4 @@
-package com.my.auth.model;
+package com.my.auth.model.database;
 
 import com.my.auth.constant.Role;
 

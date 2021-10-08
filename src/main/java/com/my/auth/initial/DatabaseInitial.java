@@ -2,17 +2,16 @@ package com.my.auth.initial;
 
 import com.my.auth.constant.Role;
 import com.my.auth.exception.ResourceNotFoundException;
-import com.my.auth.model.Client;
-import com.my.auth.model.Company;
-import com.my.auth.model.User;
-import com.my.auth.service.ClientService;
-import com.my.auth.service.CompanyService;
-import com.my.auth.service.UserService;
+import com.my.auth.model.database.Client;
+import com.my.auth.model.database.Company;
+import com.my.auth.model.database.User;
+import com.my.auth.service.database.ClientService;
+import com.my.auth.service.database.CompanyService;
+import com.my.auth.service.database.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
